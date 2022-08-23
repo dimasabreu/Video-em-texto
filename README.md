@@ -18,3 +18,7 @@ Depois disso tem a opção de download do texto, criando um arquivo TXT.
 - [X] criar o botao de download
 - [X] criar um arquivo txt ao apertar o download
 - [X] centralizar a gui
+    - [X] gui aparece no centro da tela e os widgets estao centralizados
+- [X] aparece uma msg ao fechar o programa
+- [X] excluindo todos os downloads feitos para fazer a conversão
+- [X] criar um executavel
