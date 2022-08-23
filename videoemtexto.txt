@@ -1,0 +1,5 @@
+descobri como excluir os videos baixados ao fechar o programa
+agora preciso achar um jeito de separar a funcao que cria o arquivo de texto na tela
+assim vou conseguir excluir o mp4 tambem
+ideia achar um jeito de criar funcoes separadas que uma chame a outra 
+assim liberando o video para ser deletado

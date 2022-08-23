@@ -1,8 +1,9 @@
 import tkinter as tk
 from PIL import Image, ImageTk
-from tkinter import Entry
+from tkinter import Entry, messagebox
 from pytube import YouTube
-from mp4paramp3 import *
+from conversor import *
+import os
 
 root = tk.Tk()
 root.title('Videos em texto')
@@ -46,7 +47,7 @@ def open_file():
     url = e.get()
     youtube = YouTube(url)
     audio = youtube.streams.get_lowest_resolution()
-    audio.download()
+    audio.download(filename='video.mp4')
     mp3_convert()
     wav_convert()
     text_convert()
@@ -58,6 +59,7 @@ def open_file():
     text_box.tag_add("center", 1.0, "end")
     text_box.place(relx=0.5, rely=0.65, anchor=tk.CENTER)
     botao_text.set("Enviar")
+    return
 
 
 # botao basico
@@ -73,7 +75,7 @@ def download_file():
     file.write(content)
     file.close()
     txt_text.set("Download finalizado")
-
+    return
 
 # txt button
 txt_text = tk.StringVar()
@@ -82,15 +84,13 @@ txt_text.set("Baixar o texto")
 txt_btn.place(relx=0.6, rely=0.28, anchor=tk.CENTER)
 
 
+def on_closing():
+    if messagebox.askokcancel("Quit", "Do you want to quit?"):
+        root.destroy()
+        os.remove('video.mp3')
+        os.remove('videoaudio.wav')
 
 
-
-
-
-
-
-
-
-
+root.protocol("WM_DELETE_WINDOW", on_closing)
 
 root.mainloop()
