@@ -17,4 +17,4 @@ Depois disso tem a opção de download do texto, criando um arquivo TXT.
     - [X] fazer o bloco de texto só aparecer quando ele for compilado
 - [X] criar o botao de download
 - [X] criar um arquivo txt ao apertar o download
-- [ ] centralizar a gui
+- [X] centralizar a gui
