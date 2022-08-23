@@ -1,23 +1,20 @@
 from moviepy.editor import *
 import subprocess
 import speech_recognition as sr
+from pytube import YouTube
 
 
 def mp3_convert():
-    i=0
-    while i < 200:
-        i += 1
-    file = 'video.mp4'
-    video = VideoFileClip(file)
-    video.audio.write_audiofile("video.mp3")        
-    return
+    while True:
+        clip = VideoFileClip('video.mp4')
+        clip.audio.write_audiofile("video.mp3")
+        del clip.reader
+        del clip
+        break
 
 
 def wav_convert():
-    i=0
-    while i < 200:
-        i += 1
-    subprocess.call(['ffmpeg', '-i', 'video.mp3', 
+    subprocess.call(['ffmpeg', '-i', 'video.mp3',
                 'videoaudio.wav'])
     return
 
@@ -34,6 +31,13 @@ def text_convert():
             return text
         except:
             print("deu erro")
+    return
+
+
+def downyoutu(url):
+    youtube = YouTube(url)
+    audio = youtube.streams.get_lowest_resolution()
+    audio.download(filename='video.mp4')
     return
 
 

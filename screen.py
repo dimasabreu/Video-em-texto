@@ -45,9 +45,7 @@ content = ""
 def open_file():
     botao_text.set("loading...")
     url = e.get()
-    youtube = YouTube(url)
-    audio = youtube.streams.get_lowest_resolution()
-    audio.download(filename='video.mp4')
+    downyoutu(url)
     mp3_convert()
     wav_convert()
     text_convert()
@@ -77,6 +75,7 @@ def download_file():
     txt_text.set("Download finalizado")
     return
 
+
 # txt button
 txt_text = tk.StringVar()
 txt_btn = tk.Button(root, textvariable=txt_text, command=download_file, font="Raleway", bg="#be2020", fg="white", height=2, width=15, border=3)
@@ -85,10 +84,14 @@ txt_btn.place(relx=0.6, rely=0.28, anchor=tk.CENTER)
 
 
 def on_closing():
-    if messagebox.askokcancel("Quit", "Do you want to quit?"):
+    if messagebox.askokcancel("Fechar", "Você quer sair?"):
         root.destroy()
-        os.remove('video.mp3')
-        os.remove('videoaudio.wav')
+        if os.path.exists('video.mp3'):
+            os.remove('video.mp3')
+        if os.path.exists('videoaudio.wav'):
+            os.remove('videoaudio.wav')
+        if os.path.exists('video.mp4'): 
+            os.remove('video.mp4')
 
 
 root.protocol("WM_DELETE_WINDOW", on_closing)
