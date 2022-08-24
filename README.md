@@ -21,4 +21,9 @@ Depois disso tem a opção de download do texto, criando um arquivo TXT.
     - [X] gui aparece no centro da tela e os widgets estao centralizados
 - [X] aparece uma msg ao fechar o programa
 - [X] excluindo todos os downloads feitos para fazer a conversão
-- [X] criar um executavel
+- [ ] arrumar a formatação do bloco de notas 
+- [ ] adicionar linguagens novas 
+    - [ ] PT-BR
+    - [ ] Russo
+    - [ ] Japones
+- [ ] adicionar na interface uma barra para escolher a linguagem do video
