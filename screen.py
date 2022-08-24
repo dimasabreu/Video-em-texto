@@ -1,9 +1,9 @@
 import tkinter as tk
 from PIL import Image, ImageTk
 from tkinter import Entry, messagebox
-from pytube import YouTube
 from conversor import *
 import os
+import shutil
 
 root = tk.Tk()
 root.title('Videos em texto')
@@ -48,9 +48,10 @@ def open_file():
     downyoutu(url)
     mp3_convert()
     wav_convert()
-    text_convert()
     global content
-    content = text_convert()
+    print("comecando..")
+    content = get_large_audio_transcription('videoaudio.wav')
+    print("finalizado")
     text_box = tk.Text(root, height=22, width=74, padx=10, pady=15, font=("helvetica", 16), border=10, wrap='word')
     text_box.insert(1.0, content)
     text_box.tag_configure("left", justify="left")
@@ -90,8 +91,12 @@ def on_closing():
             os.remove('video.mp3')
         if os.path.exists('videoaudio.wav'):
             os.remove('videoaudio.wav')
-        if os.path.exists('video.mp4'): 
+        if os.path.exists('video.mp4'):
             os.remove('video.mp4')
+        if os.path.exists('audio-chunks'):
+            shutil.rmtree('audio-chunks')
+        if os.path.exists('videoemtexto.txt'):
+            os.remove('videoemtexto2.txt')
 
 
 root.protocol("WM_DELETE_WINDOW", on_closing)
