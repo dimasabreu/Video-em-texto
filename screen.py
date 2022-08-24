@@ -51,7 +51,7 @@ def open_file():
     text_convert()
     global content
     content = text_convert()
-    text_box = tk.Text(root, height=22, width=74, padx=10, pady=15, font=("Helvetiva", 16), border=10)
+    text_box = tk.Text(root, height=22, width=74, padx=10, pady=15, font=("helvetica", 16), border=10, wrap='word')
     text_box.insert(1.0, content)
     text_box.tag_configure("center", justify="center")
     text_box.tag_add("center", 1.0, "end")
