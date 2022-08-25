@@ -1,6 +1,6 @@
 import tkinter as tk
 from PIL import Image, ImageTk
-from tkinter import Entry, messagebox, filedialog
+from tkinter import Checkbutton, Entry, StringVar, messagebox, filedialog
 from conversor import *
 import os
 import shutil
@@ -33,7 +33,7 @@ logo_label.place(relx=0.5, rely=0.08, anchor=tk.CENTER)
 
 
 # instrucoes
-instructions = tk.Label(root, text="Escolha um video do YouTube em INGLES para extrair tudo que foi dito", font="Raleway")
+instructions = tk.Label(root, text="Escolha um video do YouTube para extrair tudo que foi dito", font="Raleway")
 instructions.place(relx=0.5, rely=0.18, anchor=tk.CENTER)
 # criando um lugar para entrada de dados
 e = Entry(root, width=70, borderwidth=3)
@@ -51,7 +51,7 @@ def open_file():
     wav_convert()
     global content
     print("comecando..")
-    content = get_large_audio_transcription('videoaudio.wav')
+    content = get_large_audio_transcription('videoaudio.wav', var.get())
     print("finalizado")
     text_box = tk.Text(root, height=22, width=74, padx=10, pady=15, font=("helvetica", 16), border=10, wrap='word')
     text_box.insert(1.0, content)
@@ -84,7 +84,7 @@ def upload_file():
     mp3_convert(videofile)
     wav_convert()
     global content
-    content = get_large_audio_transcription('videoaudio.wav')
+    content = get_large_audio_transcription('videoaudio.wav', var.get())
     text_box = tk.Text(root, height=22, width=74, padx=10, pady=15, font=("helvetica", 16), border=10, wrap='word')
     text_box.insert(1.0, content)
     text_box.tag_configure("left", justify="left")
@@ -120,6 +120,12 @@ txt_text = tk.StringVar()
 txt_btn = tk.Button(root, textvariable=txt_text, command=download_file, font="Raleway", bg="#be2020", fg="black", height=2, width=15, border=3)
 txt_text.set("Baixar o texto")
 txt_btn.place(relx=0.7, rely=0.28, anchor=tk.CENTER)
+
+# botao de checagem de linguas
+var = StringVar()
+lan_button = Checkbutton(root, text="Portugues", variable=var, onvalue='pt-br', offvalue='')
+lan_button.place(relx=0.85, rely=0.15, anchor=tk.CENTER)
+lan_button.deselect()
 
 
 def on_closing():

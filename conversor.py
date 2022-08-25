@@ -29,7 +29,7 @@ def downyoutu(url):
     return
 
 
-def get_large_audio_transcription(path):
+def get_large_audio_transcription(path, var):
     r = sr.Recognizer()
     """
     dividindo o audio em pequenos audios
@@ -61,7 +61,7 @@ def get_large_audio_transcription(path):
             audio_listened = r.record(source)
             # tentando converter pra texto
             try:
-                text = r.recognize_google(audio_listened, language="")
+                text = r.recognize_google(audio_listened, language=var)
             except sr.UnknownValueError as e:
                 print("Error:", str(e))
             else:
