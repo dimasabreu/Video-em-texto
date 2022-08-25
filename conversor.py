@@ -7,9 +7,9 @@ from pydub import AudioSegment
 from pydub.silence import split_on_silence
 
 
-def mp3_convert():
+def mp3_convert(videofile):
     while True:
-        clip = VideoFileClip('video.mp4')
+        clip = VideoFileClip(videofile)
         clip.audio.write_audiofile("video.mp3")
         del clip.reader
         del clip
@@ -21,21 +21,6 @@ def wav_convert():
                 'videoaudio.wav'])
     return
 
-'''
-def text_convert():
-    filename = "videoaudio.wav"
-    r = sr.Recognizer()
-    # abrindo o arquivo
-    with sr.AudioFile(filename) as source:
-        audio = r.listen(source, phrase_time_limit=None)
-        try:
-            text = r.recognize_google(audio)
-            print('Reconhecendo')
-            return text
-        except:
-            print("deu erro")
-    return
-'''
 
 def downyoutu(url):
     youtube = YouTube(url)
@@ -47,48 +32,44 @@ def downyoutu(url):
 def get_large_audio_transcription(path):
     r = sr.Recognizer()
     """
-    Splitting the large audio file into chunks
-    and apply speech recognition on each of these chunks
+    dividindo o audio em pequenos audios
     """
-    # open the audio file using pydub
+    # abrindo o arquivo de audio
     sound = AudioSegment.from_wav(path)  
-    # split audio sound where silence is 700 miliseconds or more and get chunks
+    # dividindo o audio em pequenos pedacos baseado no silencio
     chunks = split_on_silence(sound,
-        # experiment with this value for your target audio file
+        # mudar esse valor dependendo do arquivo
         min_silence_len = 500,
-        # adjust this per requirement
+        # mudar esse valor dependendo do arquivo
         silence_thresh = sound.dBFS-14,
-        # keep the silence for 1 second, adjustable as well
+        # ficar em silencio mudar esse valor dependendo do arquivo
         keep_silence=500,
     )
     folder_name = "audio-chunks"
-    # create a directory to store the audio chunks
+    # criando uma pasta para guardar os pedacos do audio
     if not os.path.isdir(folder_name):
         os.mkdir(folder_name)
-    whole_text = ""
-    # process each chunk 
+    todo_texto = ""
+    # processando cada pedaco 
     for i, audio_chunk in enumerate(chunks, start=1):
-        # export audio chunk and save it in
-        # the ’folder_name’ directory.
+        # exportando os pedacos
+        
         chunk_filename = os.path.join(folder_name, f"chunk{i}.wav")
         audio_chunk.export(chunk_filename, format="wav")
-        # recognize the chunk
+        # reconhecendo os pedacos de audio
         with sr.AudioFile(chunk_filename) as source:
             audio_listened = r.record(source)
-            # try converting it to text
+            # tentando converter pra texto
             try:
-                text = r.recognize_google(audio_listened)
+                text = r.recognize_google(audio_listened, language="")
             except sr.UnknownValueError as e:
                 print("Error:", str(e))
             else:
                 text = f"{text.capitalize()}. "
-                whole_text += text
-                file = open('videoemtexto2.txt', 'w')
-                file.write(whole_text)
-                file.close()
-                
-    # return the text for all chunks detected
-    return whole_text
+                todo_texto += text
+   
+    # retornando o texto 
+    return todo_texto
   
 
 if __name__ == '__main__':
