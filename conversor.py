@@ -63,7 +63,7 @@ def get_large_audio_transcription(path, var):
             try:
                 text = r.recognize_google(audio_listened, language=var)
             except sr.UnknownValueError as e:
-                print("Error:", str(e))
+                print("Nao entendi o que ele falou:", str(e))
             else:
                 text = f"{text.capitalize()}. "
                 todo_texto += text
