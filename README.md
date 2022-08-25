@@ -23,8 +23,10 @@ Quando o texto aparecer se quiser use a opção de baixar o texto, criando um ar
 ## Proximos updates:
 
 - [ ] Adicionar linguagens novas 
-    - [ ] PT-BR
+    - [X] PT-BR
     - [ ] Russo
+      - [ ] Conflito de caracteres
     - [ ] Japones
-- [ ] Adicionar na interface uma barra para escolher a linguagem do video
+      - [ ] Conflito de caracteres
+- [X] Adicionar na interface uma barra para escolher a linguagem do video
 - [X] Achar outra maneira de captar o audio de outros sites
