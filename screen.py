@@ -33,7 +33,7 @@ logo_label.place(relx=0.5, rely=0.08, anchor=tk.CENTER)
 
 
 # instrucoes
-instructions = tk.Label(root, text="Escolha um video do YouTube para extrair tudo que foi dito", font="Raleway")
+instructions = tk.Label(root, text="Cole o link de um video do youtube ou faça o upload para extrair tudo que foi dito\n Se o video for em portugues marcar a caixa de portugues antes de enviar/upar ele", font="Raleway")
 instructions.place(relx=0.5, rely=0.18, anchor=tk.CENTER)
 # criando um lugar para entrada de dados
 e = Entry(root, width=70, borderwidth=3)
@@ -64,7 +64,6 @@ def open_file():
 
 def upload_file():
     global src
-    upbutton_text.set("loading...")
     src = filedialog.asksaveasfilename()
     directory = os.getcwd()
     shutil.copy(src, directory)
@@ -90,7 +89,6 @@ def upload_file():
     text_box.tag_configure("left", justify="left")
     text_box.tag_add("center", 1.0, "end")
     text_box.place(relx=0.5, rely=0.65, anchor=tk.CENTER)
-    upbutton_text.set("Enviar")
     return
 
 
