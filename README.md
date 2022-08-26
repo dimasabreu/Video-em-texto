@@ -1,6 +1,6 @@
 # Código para interpretar áudio e transcrever em texto
 
-<img src="images/telacompleta.png">
+<img src="main_screen.png">
   
 ## Modo de usar pelo paste de link:
 
