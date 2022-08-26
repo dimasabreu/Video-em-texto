@@ -24,13 +24,3 @@ Espere o codigo fazer o trabalho dele e colocar o texto na sua tela(se der erro 
 
 Quando o texto aparecer se quiser use a opção de baixar o texto, criando um arquivo TXT.
 
-## Proximos updates:
-
-- [ ] Adicionar linguagens novas 
-    - [X] PT-BR
-    - [ ] Russo
-      - [ ] Conflito de caracteres
-    - [ ] Japones
-      - [ ] Conflito de caracteres
-- [X] Adicionar na interface uma barra para escolher a linguagem do video
-- [X] Achar outra maneira de captar o audio de outros sites
